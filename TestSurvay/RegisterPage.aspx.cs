@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Data.SqlClient;
 namespace TestSurvay
 {
     public partial class RegisterPage : System.Web.UI.Page
@@ -16,11 +16,13 @@ namespace TestSurvay
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            Session["User"] = "Anonymous";
             Response.Redirect("Survay.aspx");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            Session["User"] = "Anonymous";
             Response.Redirect("Survay.aspx");
         }
     }

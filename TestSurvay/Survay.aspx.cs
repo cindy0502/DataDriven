@@ -139,7 +139,7 @@ namespace TestSurvay
                 //followupQuestionList.Push((int)question.nextQId);
                 insertNextQuestionId((int)question.nextQId,followupQuestionList);
             }
-
+            ListOfQuestion.Add(currentQuestionIdInSeeion.ToString());
             if (userControl is TextBoxUserControl)
             {
                 TextBoxUserControl textBoxcontr = (TextBoxUserControl)userControl;
@@ -168,6 +168,21 @@ namespace TestSurvay
             }
             else
             {
+                RadioButtonUserControl radioBtnControl = (RadioButtonUserControl)userControl;
+                string answerVar = "";
+                foreach (ListItem item in radioBtnControl.getControl().Items)
+                {
+                    if (item.Selected)
+                    {
+                        answerVar += item.Value;
+                        if (item.Attributes["nextQId"] != null)
+                        {
+
+                            insertNextQuestionId((int.Parse(item.Attributes["next_q_id"])), followupQuestionList);
+                        }
+                    }
+                }
+                Session["UserAnswer"] = answerVar;
                 // Radio button
             }
 
@@ -175,14 +190,21 @@ namespace TestSurvay
 
             // 1. Identify which type of question is current question
             // 2. Access that question to get answer out from it
-           // Label1.Text = "Test label";
+            // Label1.Text = "Test label";
             if (followupQuestionList.Count > 0)
             {
+                Object userAnwser = Session["UserAnswer"];
+                ListOfAnswer.Add(userAnwser.ToString());
+
                 Session["CURRENT_QUESTION_ID"] = question.nextQId;
                 Response.Redirect("Survay.aspx");
             }
             else
             {
+                Object userAnwser = Session["UserAnswer"];
+                ListOfAnswer.Add(userAnwser.ToString());
+
+                Session["ListOfAnswer"] = ListOfAnswer;
                 Response.Redirect("EndSurvey.aspx");
             }
             
@@ -252,7 +274,38 @@ namespace TestSurvay
             
            // return null;
         }
+        public List<string> ListOfAnswer
+        {
+            get
+            {
+                if (HttpContext.Current.Session["ListOfAnswer"] == null)
+                {
+                    HttpContext.Current.Session["ListOfAnswer"] = new List<string>();
+                }
+                return HttpContext.Current.Session["ListOfAnswer"] as List<string>;
+            }
+            set
+            {
+                HttpContext.Current.Session["ListOfAnswer"] = value;
+            }
 
+        }
+        public List<string> ListOfQuestion
+        {
+            get
+            {
+                if (HttpContext.Current.Session["ListOfQuestion"] == null)
+                {
+                    HttpContext.Current.Session["ListOfQuestion"] = new List<string>();
+                }
+                return HttpContext.Current.Session["ListOfQuestion"] as List<string>;
+            }
+            set
+            {
+                HttpContext.Current.Session["ListOfQuestion"] = value;
+            }
+
+        }
         private List<QuestionOption> getQuestionOptions(int currentQuestionId)
         {
             List<QuestionOption> options = new List<QuestionOption>();
