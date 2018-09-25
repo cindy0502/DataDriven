@@ -62,10 +62,8 @@
     <Content Include="Controls\RadioButtonUserControl.ascx" />
     <Content Include="Controls\TextBoxUserControl.ascx" />
     <Content Include="EndSurvey.aspx" />
-    <Content Include="MenuPage.aspx" />
     <Content Include="RegisterPage.aspx" />
     <Content Include="SearchCriteria.aspx" />
-    <Content Include="SearchResult.aspx" />
     <Content Include="Survay.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -105,13 +103,6 @@
     <Compile Include="EndSurvey.aspx.designer.cs">
       <DependentUpon>EndSurvey.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MenuPage.aspx.cs">
-      <DependentUpon>MenuPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MenuPage.aspx.designer.cs">
-      <DependentUpon>MenuPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,13 +119,6 @@
     </Compile>
     <Compile Include="SearchCriteria.aspx.designer.cs">
       <DependentUpon>SearchCriteria.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SearchResult.aspx.cs">
-      <DependentUpon>SearchResult.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SearchResult.aspx.designer.cs">
-      <DependentUpon>SearchResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="Survay.aspx.cs">
       <DependentUpon>Survay.aspx</DependentUpon>
